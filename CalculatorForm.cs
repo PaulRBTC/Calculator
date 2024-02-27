@@ -1,20 +1,14 @@
-﻿using System.Collections.Immutable;
-using System.Data;
-using System.Linq.Expressions;
-using System.Runtime.ExceptionServices;
-using System.Runtime.InteropServices;
-using System.Text.RegularExpressions;
-using System.Windows.Forms.VisualStyles;
+﻿using System.Text.RegularExpressions;
 
 namespace Calculator
 {
-    public partial class Form1 : Form
+    public partial class CalculatorForm : Form
     {
 
         readonly string[] operators = new string[] { "÷", "×", "+", "-" };
         double LastAnswer = 0.0f;
 
-        public Form1()
+        public CalculatorForm()
         {
             InitializeComponent();
 

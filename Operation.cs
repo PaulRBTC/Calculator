@@ -1,11 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Security.Permissions;
-using System.Text;
-using System.Text.RegularExpressions;
-using System.Threading.Tasks;
-using System.Xml.XPath;
+﻿using System.Text.RegularExpressions;
 
 namespace Calculator
 {
@@ -15,8 +8,8 @@ namespace Calculator
         public string? Operator { get; set; }
         public Operation? RightNumber { get; set; }
 
-        readonly private Regex additionSubtraction = new Regex("[+-]", RegexOptions.RightToLeft);
-        readonly private Regex multiplicationDivision = new Regex("[*/]", RegexOptions.RightToLeft);
+        private readonly Regex additionSubtraction = new Regex("[+-]", RegexOptions.RightToLeft);
+        private readonly Regex multiplicationDivision = new Regex("[*/]", RegexOptions.RightToLeft);
 
         private double result;
 
@@ -67,13 +60,10 @@ namespace Calculator
                         break;
                     default:
                         throw new Exception("Call Parse first.");
-                }
-
-                return result;
-            } else
-            {
-                return 0.0;
+                }                
             }
+
+            return result;
         }
     }
 }
