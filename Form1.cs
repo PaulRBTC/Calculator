@@ -10,7 +10,7 @@ namespace Calculator
     public partial class Form1 : Form
     {
 
-        readonly string[] operators = new string[] { " ÷ ", " × ", " + ", " - " };
+        readonly string[] operators = new string[] { "÷", "×", "+", "-" };
         float LastAnswer = 0.0f;
 
         public Form1()
@@ -53,7 +53,7 @@ namespace Calculator
                 return;
             }
 
-            if (operators.Any(op => this.CalculationInput.Text.EndsWith(op)))
+            if (operators.Any(op1 => this.CalculationInput.Text.EndsWith($" {op1} ")))
             {
                 this.CalculationInput.Text = this.CalculationInput.Text[..^3];
             }
@@ -124,44 +124,30 @@ namespace Calculator
 
         private void DivideBtn_Click(object sender, EventArgs e)
         {
-            HandleOperationBtn("÷");   
+            HandleOperationBtn(operators[0]);   
         }
 
         private void MultiplyBtn_Click(object sender, EventArgs e)
         {
-            HandleOperationBtn("×");
-        }
-
-        private void SubtractBtn_Click(object sender, EventArgs e)
-        {
-            HandleOperationBtn("−");
+            HandleOperationBtn(operators[1]);
         }
 
         private void AddBtn_Click(object sender, EventArgs e)
         {
-            HandleOperationBtn("+");
+            HandleOperationBtn(operators[2]);
+        }
+
+        private void SubtractBtn_Click(object sender, EventArgs e)
+        {
+            HandleOperationBtn(operators[3]);
         }
 
         private void EqualsBtn_Click(object sender, EventArgs e)
         {
-            string[] inputs = this.CalculationInput.Text.Split(" ", StringSplitOptions.None);
-            string[] operations = Array.Empty<string>();
-            float answer = 0f;
-
-            int inputCount = 0;
-            while (inputCount < (inputs.Length - 1))
-            {
-                float leftNumber = float.Parse(inputs[inputCount]);
-                string op = inputs[++inputCount];
-                float rightNumber = float.Parse(inputs[++inputCount]);
-                operations = operations.Append($"{leftNumber} {op} {rightNumber}").ToArray();
-            }
-
             string input = this.CalculationInput.Text
                 .Replace("÷", "/")
-                .Replace("×", "*")
-                .Replace("−", "-");
-            answer = float.Parse(new DataTable().Compute(input, null).ToString() ?? "0");
+                .Replace("×", "*");
+            float answer = float.Parse(new DataTable().Compute(input, null).ToString() ?? "0");
 
             this.LastAnswer = answer;
             this.CalculationInput.Text = $"= {answer}";
@@ -178,6 +164,7 @@ namespace Calculator
             if (this.LastAnswer == 0.0f) return;
 
             if (this.CalculationInput.Text.StartsWith("=")) this.CalculationInput.Text = this.LastAnswer.ToString();
+            else if (this.CalculationInput.Text == "0") this.CalculationInput.Text = this.LastAnswer.ToString();
             else this.CalculationInput.Text += this.LastAnswer;
         }
     }

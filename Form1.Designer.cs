@@ -106,7 +106,7 @@
             this.SubtractBtn.Name = "SubtractBtn";
             this.SubtractBtn.Size = new System.Drawing.Size(61, 55);
             this.SubtractBtn.TabIndex = 5;
-            this.SubtractBtn.Text = "−";
+            this.SubtractBtn.Text = "-";
             this.SubtractBtn.UseVisualStyleBackColor = true;
             this.SubtractBtn.Click += new System.EventHandler(this.SubtractBtn_Click);
             // 
