@@ -22,12 +22,6 @@ namespace Calculator
             this.CalculationInput.ScrollToCaret();
         }
 
-        private int IndexOf(string[] array, string elem)
-        {
-            return array.Select((elem, index) => new { elem, index })
-                .First(p => p.elem.Trim() == elem).index;
-        }
-
         private void HandleNumberBtns(int number)
         {
             string numberString = number.ToString();
