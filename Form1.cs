@@ -1,4 +1,5 @@
 ﻿using System.Collections.Immutable;
+using System.Data;
 using System.Linq.Expressions;
 using System.Runtime.ExceptionServices;
 using System.Runtime.InteropServices;
@@ -55,11 +56,6 @@ namespace Calculator
             if (operators.Any(op => this.CalculationInput.Text.EndsWith(op)))
             {
                 this.CalculationInput.Text = this.CalculationInput.Text[..^3];
-            }
-
-            if (operators.Any(op => this.CalculationInput.Text.Contains(op)))
-            {
-                return;
             }
 
             this.CalculationInput.Text += $" {op} ";
@@ -152,9 +148,6 @@ namespace Calculator
             string[] operations = Array.Empty<string>();
             float answer = 0f;
 
-            // iterate inputs, add to operations array
-            // sort by operations array by order of operations
-            // iterate over operations array, split by " ", perform operator (idx1) on left (idx0) and right (idx2)
             int inputCount = 0;
             while (inputCount < (inputs.Length - 1))
             {
@@ -164,33 +157,11 @@ namespace Calculator
                 operations = operations.Append($"{leftNumber} {op} {rightNumber}").ToArray();
             }
 
-            foreach (string operation in operations)
-            {
-                string[] opArray = operation.Split(" ", StringSplitOptions.None);
-                int opCount = 0;
-                while (opCount < (opArray.Length - 1))
-                {
-                    float leftNumber = opArray[opCount] == "ANS" ? answer : float.Parse(opArray[opCount]);
-                    string op = opArray[++opCount];
-                    float rightNumber = float.Parse(opArray[++opCount]);
-
-                    switch (op)
-                    {
-                        case "÷":
-                            answer += leftNumber / rightNumber;
-                            break;
-                        case "×":
-                            answer += leftNumber * rightNumber;
-                            break;
-                        case "+":
-                            answer += leftNumber + rightNumber;
-                            break;
-                        case "−":
-                            answer += leftNumber - rightNumber;
-                            break;
-                    }
-                }
-            }
+            string input = this.CalculationInput.Text
+                .Replace("÷", "/")
+                .Replace("×", "*")
+                .Replace("−", "-");
+            answer = float.Parse(new DataTable().Compute(input, null).ToString() ?? "0");
 
             this.LastAnswer = answer;
             this.CalculationInput.Text = $"= {answer}";
