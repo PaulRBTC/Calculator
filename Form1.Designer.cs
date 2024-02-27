@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.CalculationInput = new System.Windows.Forms.TextBox();
             this.BkspBtn = new System.Windows.Forms.Button();
             this.ClearBtn = new System.Windows.Forms.Button();
             this.DivideBtn = new System.Windows.Forms.Button();
@@ -46,19 +45,8 @@
             this.TwoBtn = new System.Windows.Forms.Button();
             this.ThreeBtn = new System.Windows.Forms.Button();
             this.ZeroBtn = new System.Windows.Forms.Button();
+            this.CalculationInput = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
-            // 
-            // CalculationInput
-            // 
-            this.CalculationInput.BackColor = System.Drawing.SystemColors.ControlDark;
-            this.CalculationInput.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.CalculationInput.Location = new System.Drawing.Point(5, 12);
-            this.CalculationInput.Multiline = true;
-            this.CalculationInput.Name = "CalculationInput";
-            this.CalculationInput.ReadOnly = true;
-            this.CalculationInput.Size = new System.Drawing.Size(374, 114);
-            this.CalculationInput.TabIndex = 0;
-            this.CalculationInput.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // BkspBtn
             // 
@@ -70,6 +58,7 @@
             this.BkspBtn.TabIndex = 1;
             this.BkspBtn.Text = "BKSP";
             this.BkspBtn.UseVisualStyleBackColor = true;
+            this.BkspBtn.Click += new System.EventHandler(this.BkspBtn_Click);
             // 
             // ClearBtn
             // 
@@ -81,6 +70,7 @@
             this.ClearBtn.TabIndex = 2;
             this.ClearBtn.Text = "C";
             this.ClearBtn.UseVisualStyleBackColor = true;
+            this.ClearBtn.Click += new System.EventHandler(this.ClearBtn_Click);
             // 
             // DivideBtn
             // 
@@ -92,6 +82,7 @@
             this.DivideBtn.TabIndex = 3;
             this.DivideBtn.Text = "÷";
             this.DivideBtn.UseVisualStyleBackColor = true;
+            this.DivideBtn.Click += new System.EventHandler(this.DivideBtn_Click);
             // 
             // MultiplyBtn
             // 
@@ -103,6 +94,7 @@
             this.MultiplyBtn.TabIndex = 4;
             this.MultiplyBtn.Text = "×";
             this.MultiplyBtn.UseVisualStyleBackColor = true;
+            this.MultiplyBtn.Click += new System.EventHandler(this.MultiplyBtn_Click);
             // 
             // SubtractBtn
             // 
@@ -114,6 +106,7 @@
             this.SubtractBtn.TabIndex = 5;
             this.SubtractBtn.Text = "−";
             this.SubtractBtn.UseVisualStyleBackColor = true;
+            this.SubtractBtn.Click += new System.EventHandler(this.SubtractBtn_Click);
             // 
             // AddBtn
             // 
@@ -125,6 +118,7 @@
             this.AddBtn.TabIndex = 6;
             this.AddBtn.Text = "+";
             this.AddBtn.UseVisualStyleBackColor = true;
+            this.AddBtn.Click += new System.EventHandler(this.AddBtn_Click);
             // 
             // EqualsBtn
             // 
@@ -137,6 +131,7 @@
             this.EqualsBtn.TabIndex = 7;
             this.EqualsBtn.Text = "=";
             this.EqualsBtn.UseVisualStyleBackColor = false;
+            this.EqualsBtn.Click += new System.EventHandler(this.EqualsBtn_Click);
             // 
             // SevenBtn
             // 
@@ -149,6 +144,7 @@
             this.SevenBtn.TabIndex = 8;
             this.SevenBtn.Text = "7";
             this.SevenBtn.UseVisualStyleBackColor = false;
+            this.SevenBtn.Click += new System.EventHandler(this.SevenBtn_Click);
             // 
             // EightBtn
             // 
@@ -161,6 +157,7 @@
             this.EightBtn.TabIndex = 9;
             this.EightBtn.Text = "8";
             this.EightBtn.UseVisualStyleBackColor = false;
+            this.EightBtn.Click += new System.EventHandler(this.EightBtn_Click);
             // 
             // NineBtn
             // 
@@ -173,6 +170,7 @@
             this.NineBtn.TabIndex = 10;
             this.NineBtn.Text = "9";
             this.NineBtn.UseVisualStyleBackColor = false;
+            this.NineBtn.Click += new System.EventHandler(this.NineBtn_Click);
             // 
             // FourBtn
             // 
@@ -185,6 +183,7 @@
             this.FourBtn.TabIndex = 11;
             this.FourBtn.Text = "4";
             this.FourBtn.UseVisualStyleBackColor = false;
+            this.FourBtn.Click += new System.EventHandler(this.FourBtn_Click);
             // 
             // FiveBtn
             // 
@@ -197,6 +196,7 @@
             this.FiveBtn.TabIndex = 12;
             this.FiveBtn.Text = "5";
             this.FiveBtn.UseVisualStyleBackColor = false;
+            this.FiveBtn.Click += new System.EventHandler(this.FiveBtn_Click);
             // 
             // SixBtn
             // 
@@ -209,6 +209,7 @@
             this.SixBtn.TabIndex = 13;
             this.SixBtn.Text = "6";
             this.SixBtn.UseVisualStyleBackColor = false;
+            this.SixBtn.Click += new System.EventHandler(this.SixBtn_Click);
             // 
             // OneBtn
             // 
@@ -221,6 +222,7 @@
             this.OneBtn.TabIndex = 14;
             this.OneBtn.Text = "1";
             this.OneBtn.UseVisualStyleBackColor = false;
+            this.OneBtn.Click += new System.EventHandler(this.OneBtn_Click);
             // 
             // TwoBtn
             // 
@@ -233,6 +235,7 @@
             this.TwoBtn.TabIndex = 15;
             this.TwoBtn.Text = "2";
             this.TwoBtn.UseVisualStyleBackColor = false;
+            this.TwoBtn.Click += new System.EventHandler(this.TwoBtn_Click);
             // 
             // ThreeBtn
             // 
@@ -245,6 +248,7 @@
             this.ThreeBtn.TabIndex = 16;
             this.ThreeBtn.Text = "3";
             this.ThreeBtn.UseVisualStyleBackColor = false;
+            this.ThreeBtn.Click += new System.EventHandler(this.ThreeBtn_Click);
             // 
             // ZeroBtn
             // 
@@ -257,6 +261,21 @@
             this.ZeroBtn.TabIndex = 17;
             this.ZeroBtn.Text = "0";
             this.ZeroBtn.UseVisualStyleBackColor = false;
+            this.ZeroBtn.Click += new System.EventHandler(this.ZeroBtn_Click);
+            // 
+            // CalculationInput
+            // 
+            this.CalculationInput.BackColor = System.Drawing.SystemColors.ControlDark;
+            this.CalculationInput.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.CalculationInput.Font = new System.Drawing.Font("Segoe UI", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.CalculationInput.Location = new System.Drawing.Point(5, 12);
+            this.CalculationInput.Multiline = true;
+            this.CalculationInput.Name = "CalculationInput";
+            this.CalculationInput.ReadOnly = true;
+            this.CalculationInput.Size = new System.Drawing.Size(374, 114);
+            this.CalculationInput.TabIndex = 0;
+            this.CalculationInput.Text = "0";
+            this.CalculationInput.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // Form1
             // 
@@ -291,8 +310,6 @@
         }
 
         #endregion
-
-        private TextBox CalculationInput;
         private Button BkspBtn;
         private Button ClearBtn;
         private Button DivideBtn;
@@ -310,5 +327,6 @@
         private Button TwoBtn;
         private Button ThreeBtn;
         private Button ZeroBtn;
+        private TextBox CalculationInput;
     }
 }
