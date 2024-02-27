@@ -3,6 +3,7 @@ using System.Data;
 using System.Linq.Expressions;
 using System.Runtime.ExceptionServices;
 using System.Runtime.InteropServices;
+using System.Text.RegularExpressions;
 using System.Windows.Forms.VisualStyles;
 
 namespace Calculator
@@ -11,7 +12,7 @@ namespace Calculator
     {
 
         readonly string[] operators = new string[] { "÷", "×", "+", "-" };
-        float LastAnswer = 0.0f;
+        double LastAnswer = 0.0f;
 
         public Form1()
         {
@@ -19,13 +20,7 @@ namespace Calculator
 
             this.CalculationInput.Select(this.CalculationInput.Text.Length, this.CalculationInput.Text.Length);
             this.CalculationInput.ScrollToCaret();
-
-            //AllocConsole();
         }
-
-        /*[DllImport("kernel32.dll", SetLastError = true)]
-        [return: MarshalAs(UnmanagedType.Bool)]
-        static extern bool AllocConsole();*/
 
         private int IndexOf(string[] array, string elem)
         {
@@ -144,10 +139,15 @@ namespace Calculator
 
         private void EqualsBtn_Click(object sender, EventArgs e)
         {
-            string input = this.CalculationInput.Text
-                .Replace("÷", "/")
-                .Replace("×", "*");
-            float answer = float.Parse(new DataTable().Compute(input, null).ToString() ?? "0");
+            string equation = this.CalculationInput.Text;
+            equation = Regex.Replace(equation, @"\s+", ""); //remove all spaces from equation
+            equation = Regex.Replace(equation, operators[0], "/"); //set divide operator to be "computer-friendly"
+            equation = Regex.Replace(equation, operators[1], "*"); //set multiply operator to be "computer-friendly"
+            
+            Operation operation = new Operation();
+            operation.Parse(equation);
+
+            double answer = operation.Solve();
 
             this.LastAnswer = answer;
             this.CalculationInput.Text = $"= {answer}";
@@ -163,9 +163,14 @@ namespace Calculator
         {
             if (this.LastAnswer == 0.0f) return;
 
-            if (this.CalculationInput.Text.StartsWith("=")) this.CalculationInput.Text = this.LastAnswer.ToString();
-            else if (this.CalculationInput.Text == "0") this.CalculationInput.Text = this.LastAnswer.ToString();
-            else this.CalculationInput.Text += this.LastAnswer;
+            if (this.CalculationInput.Text.StartsWith("=") || this.CalculationInput.Text == "0")
+            {
+                this.CalculationInput.Text = this.LastAnswer.ToString();
+            }
+            else
+            {
+                this.CalculationInput.Text += this.LastAnswer;
+            }
         }
     }
 }
