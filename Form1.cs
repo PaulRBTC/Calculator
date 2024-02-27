@@ -107,8 +107,14 @@ namespace Calculator
 
         private void BkspBtn_Click(object sender, EventArgs e)
         {
-            if (operators.Any(op => this.CalculationInput.Text.EndsWith(op))) this.CalculationInput.Text = this.CalculationInput.Text[..^3];
-            else this.CalculationInput.Text = this.CalculationInput.Text[..^1];
+            if (this.CalculationInput.Text.Length > 0)
+            {
+                if (operators.Any(op => this.CalculationInput.Text.EndsWith(op))) this.CalculationInput.Text = this.CalculationInput.Text[..^2];
+                else if (operators.Any(op => this.CalculationInput.Text.EndsWith($" {op} "))) this.CalculationInput.Text = this.CalculationInput.Text[..^3];
+                else this.CalculationInput.Text = this.CalculationInput.Text[..^1];
+
+                if (this.CalculationInput.Text.Length == 0) this.CalculationInput.Text = "0";
+            }
         }
 
         private void DivideBtn_Click(object sender, EventArgs e)
