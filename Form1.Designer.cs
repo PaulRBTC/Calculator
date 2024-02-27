@@ -46,6 +46,8 @@
             this.ThreeBtn = new System.Windows.Forms.Button();
             this.ZeroBtn = new System.Windows.Forms.Button();
             this.CalculationInput = new System.Windows.Forms.TextBox();
+            this.DecButton = new System.Windows.Forms.Button();
+            this.AnsButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // BkspBtn
@@ -277,12 +279,38 @@
             this.CalculationInput.Text = "0";
             this.CalculationInput.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
+            // DecButton
+            // 
+            this.DecButton.Font = new System.Drawing.Font("Segoe UI", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.DecButton.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.DecButton.Location = new System.Drawing.Point(12, 395);
+            this.DecButton.Name = "DecButton";
+            this.DecButton.Size = new System.Drawing.Size(61, 55);
+            this.DecButton.TabIndex = 18;
+            this.DecButton.Text = ".";
+            this.DecButton.UseVisualStyleBackColor = true;
+            this.DecButton.Click += new System.EventHandler(this.DecButton_Click);
+            // 
+            // AnsButton
+            // 
+            this.AnsButton.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.AnsButton.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.AnsButton.Location = new System.Drawing.Point(209, 395);
+            this.AnsButton.Name = "AnsButton";
+            this.AnsButton.Size = new System.Drawing.Size(61, 55);
+            this.AnsButton.TabIndex = 19;
+            this.AnsButton.Text = "ANS";
+            this.AnsButton.UseVisualStyleBackColor = true;
+            this.AnsButton.Click += new System.EventHandler(this.AnsButton_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlDarkDark;
             this.ClientSize = new System.Drawing.Size(385, 516);
+            this.Controls.Add(this.AnsButton);
+            this.Controls.Add(this.DecButton);
             this.Controls.Add(this.ZeroBtn);
             this.Controls.Add(this.ThreeBtn);
             this.Controls.Add(this.TwoBtn);
@@ -303,7 +331,7 @@
             this.Controls.Add(this.CalculationInput);
             this.ForeColor = System.Drawing.SystemColors.ControlLight;
             this.Name = "Form1";
-            this.Text = "Form1";
+            this.Text = "Calculator";
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -328,5 +356,7 @@
         private Button ThreeBtn;
         private Button ZeroBtn;
         private TextBox CalculationInput;
+        private Button DecButton;
+        private Button AnsButton;
     }
 }
