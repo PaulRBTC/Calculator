@@ -11,12 +11,12 @@ namespace Calculator
 {
     public class Operation
     {
-        public Operation LeftNumber { get; set; }
-        public string Operator { get; set; }
-        public Operation RightNumber { get; set; }
+        public Operation? LeftNumber { get; set; }
+        public string? Operator { get; set; }
+        public Operation? RightNumber { get; set; }
 
-        private Regex additionSubtraction = new Regex("[+-]", RegexOptions.RightToLeft);
-        private Regex multiplicationDivision = new Regex("[*/]", RegexOptions.RightToLeft);
+        readonly private Regex additionSubtraction = new Regex("[+-]", RegexOptions.RightToLeft);
+        readonly private Regex multiplicationDivision = new Regex("[*/]", RegexOptions.RightToLeft);
 
         private double result;
 
@@ -33,10 +33,10 @@ namespace Calculator
                 Operator = operatorLocation.Value;
 
                 LeftNumber = new Operation();
-                LeftNumber.Parse(equation.Substring(0, operatorLocation.Index));
+                LeftNumber.Parse(equation[..operatorLocation.Index]);
 
                 RightNumber = new Operation();
-                RightNumber.Parse(equation.Substring(operatorLocation.Index + 1));
+                RightNumber.Parse(equation[(operatorLocation.Index + 1)..]);
             } 
             else
             {
@@ -47,27 +47,33 @@ namespace Calculator
 
         public double Solve()
         {
-            switch(Operator)
+            if (LeftNumber is not null && RightNumber is not null)
             {
-                case "v":
-                    break;
-                case "+":
-                    result = LeftNumber.Solve() + RightNumber.Solve();
-                    break;
-                case "-":
-                    result = LeftNumber.Solve() - RightNumber.Solve();
-                    break;
-                case "*":
-                    result = LeftNumber.Solve() * RightNumber.Solve();
-                    break;
-                case "/":
-                    result = LeftNumber.Solve() / RightNumber.Solve();
-                    break;
-                default:
-                    throw new Exception("Call Parse first.");
-            }
+                switch (Operator)
+                {
+                    case "v":
+                        break;
+                    case "+":
+                        result = LeftNumber.Solve() + RightNumber.Solve();
+                        break;
+                    case "-":
+                        result = LeftNumber.Solve() - RightNumber.Solve();
+                        break;
+                    case "*":
+                        result = LeftNumber.Solve() * RightNumber.Solve();
+                        break;
+                    case "/":
+                        result = LeftNumber.Solve() / RightNumber.Solve();
+                        break;
+                    default:
+                        throw new Exception("Call Parse first.");
+                }
 
-            return result;
+                return result;
+            } else
+            {
+                return 0.0;
+            }
         }
     }
 }
